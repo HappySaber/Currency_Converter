@@ -1,5 +1,5 @@
 package model
 
 type Currency struct {
-	Name, Value string
+	ID, Name, Value, Quantity string
 }
