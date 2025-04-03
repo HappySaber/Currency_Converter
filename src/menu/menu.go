@@ -59,7 +59,58 @@ func Menu() {
 
 			res := converter.Converter(utils.GetCurrencyByID(val1), utils.GetCurrencyByID(val2), quantity)
 
-			fmt.Printf("1 smth = %.1f \n", res)
+			fmt.Printf("%.1f %s = %.1f %s\n", quantity, utils.GetNameofCurrency(val1), res, utils.GetNameofCurrency(val2))
+
+		case "3":
+			utils.ShowCurrenciesID()
+
+			fmt.Println("Choose currency  that will be converted in ruble")
+
+			reader := bufio.NewReader(os.Stdin)
+			fmt.Print("Your choice: ")
+
+			val1, _ := reader.ReadString('\n')
+			val1 = strings.TrimSpace(val1)
+
+			fmt.Println("Choose the quantity of currency")
+			fmt.Print("Your choice: ")
+
+			quantityStr, _ := reader.ReadString('\n')
+			quantityStr = strings.TrimSpace(quantityStr)
+			quantity, err := strconv.ParseFloat(quantityStr, 64)
+
+			if err != nil {
+				log.Fatalf("Could not convert quantity to int: %s", err)
+			}
+
+			res := converter.Converter(utils.GetCurrencyByID(val1), 1, quantity)
+			fmt.Printf("%.1f  %s= %.1f российских рублей\n", quantity, utils.GetNameofCurrency(val1), res)
+
+		case "4":
+			utils.ShowCurrenciesID()
+
+			fmt.Println("Choose currency in that ruble will be converted")
+
+			reader := bufio.NewReader(os.Stdin)
+			fmt.Print("Your choice: ")
+
+			val1, _ := reader.ReadString('\n')
+			val1 = strings.TrimSpace(val1)
+
+			fmt.Println("Choose the quantity of rubles")
+			fmt.Print("Your choice: ")
+
+			quantityStr, _ := reader.ReadString('\n')
+			quantityStr = strings.TrimSpace(quantityStr)
+			quantity, err := strconv.ParseFloat(quantityStr, 64)
+
+			if err != nil {
+				log.Fatalf("Could not convert quantity to int: %s", err)
+			}
+
+			res := converter.Converter(1, utils.GetCurrencyByID(val1), quantity)
+			fmt.Printf("%.1f российских рублей = %.1f %s\n", quantity, res, utils.GetNameofCurrency(val1))
+
 		case "5":
 			fmt.Println("Thanks for using my converter\n Goodbuy, have a great day!!!")
 			isExit = true
