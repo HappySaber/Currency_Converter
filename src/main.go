@@ -15,11 +15,11 @@ func main() {
 	)
 
 	c.OnRequest(func(r *colly.Request) {
-		log.Println("Запрос:", r.URL)
+		log.Println("Request:", r.URL)
 	})
 
 	c.OnResponse(func(r *colly.Response) {
-		log.Println("Ответ получен с кодом:", r.StatusCode)
+		log.Println("Response with code:", r.StatusCode)
 	})
 
 	var currencies []model.Currency
@@ -53,7 +53,7 @@ func main() {
 		}
 
 		if err := writer.Write(headers); err != nil {
-			log.Fatalf("Ошибка записи заголовков в CSV: %s", err)
+			log.Fatalf("Error in writing CSV's headers: %s", err)
 		}
 
 		for _, currency := range currencies {
