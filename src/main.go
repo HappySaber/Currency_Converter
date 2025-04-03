@@ -1,6 +1,7 @@
 package main
 
 import (
+	"CurrencyConverter/menu"
 	"CurrencyConverter/parser"
 	"CurrencyConverter/utils"
 	"log"
@@ -15,4 +16,5 @@ func main() {
 		log.Fatalf("Could not get currency: %s", err)
 	}
 	log.Println(res)
+	menu.Menu()
 }
