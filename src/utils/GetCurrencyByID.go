@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func GetCurrencyByID(id string) (float64, error) {
+func GetCurrencyByID(id string) float64 {
 	file, err := os.Open("currencies.csv")
 
 	if err != nil {
@@ -46,10 +46,10 @@ func GetCurrencyByID(id string) (float64, error) {
 		quantity := convertToInt(record[3])
 
 		if intID == intRecordID {
-			return value / float64(quantity), nil
+			return value / float64(quantity)
 		}
 	}
-	return 0, nil
+	return 0
 }
 
 func convertToInt(record string) int {
