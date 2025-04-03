@@ -5,6 +5,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func Menu() {
@@ -20,10 +21,13 @@ func Menu() {
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Print("Your choice: ")
 		value, _ := reader.ReadString('\n')
+		value = strings.TrimSpace(value)
 
 		switch value {
 		case "1":
 			utils.ShowCurrenciesID()
+		case "2":
+
 		case "5":
 			fmt.Println("Thanks for using my converter\n Goodbuy, have a great day!!!")
 			isExit = true
