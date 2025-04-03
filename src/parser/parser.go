@@ -27,7 +27,9 @@ func Parser() {
 		currency.Value = e.ChildText("td:nth-child(5)")
 		currency.Quantity = e.ChildText("td:nth-child(3)")
 
-		currencies = append(currencies, currency)
+		if currency.ID != "" {
+			currencies = append(currencies, currency)
+		}
 	})
 
 	c.OnScraped(func(r *colly.Response) {
